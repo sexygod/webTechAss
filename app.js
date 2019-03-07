@@ -100,11 +100,33 @@ function loadGenres(){
                 genres.push(newGenre);
             }
 
-            console.log(genres);
+            console.log(genres); //delete me
             displayGenres();
         }
     };
     xhttp.open("GET", "genreDB.txt", true);
+    xhttp.send();
+}
+
+//Question 6
+function loadMovies(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+            
+            /* var moviesStrArr = this.responseText.split(",");
+            for(var key in moviesStrArr){
+                var newMovie = new Movie();
+                newMovie.name = moviesStrArr[key];
+                movies.push(newMovie);
+            } */
+
+            console.log(this.responseText);
+            //console.log(movies); //delete me
+            //displayMovies();
+        }
+    };
+    xhttp.open("GET", "moviesDB.json", true);
     xhttp.send();
 }
 
