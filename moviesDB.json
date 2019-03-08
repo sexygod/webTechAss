@@ -1,7 +1,18 @@
 {
-    "id":"1",
-    "firstName":"vishal",
-    "lastName":"gehlot",
-    "title":"Mr.",
-    "officePhone":"643636"
+    "movies" : [
+        {
+            "uuid" : "0123",
+            "title": "Interstellar",
+            "year" : "2014",
+            "genres" : "Sci-Fi",
+            "related" : ["2001 A Space Odyssey", "The Martian"]
+        },
+        {
+            "uuid" : "0124",
+            "title": "Bloodborne",
+            "year" : "2014",
+            "genres" : "Dark Fantasy",
+            "related" : ["Dark Souls"]
+        }
+    ]
 }

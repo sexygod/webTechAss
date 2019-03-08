@@ -20,25 +20,23 @@ function Movie(){
         }
         return false;
     }
+    this.setAttributes = function(uuid, title, year, genres, related){
+        this.uuid = uuid;
+        this.title = title;
+        this.year = year;
+        this.genres = genres;
+        this.related = related;
+    }
 }
 
 function Genre(){
     this.name = "";
     this.movies = [];
     this.addMovie = function(m){
-        if(m instanceof Movie){
+        if (m instanceof Movie){
             this.movies.push(m);
             return true;
         }
         return false;
     }
 }
-
-function test(){
-    var mv = new Movie();
-    var mv2 = new Movie();
-    var g = new Genre();
-    return(g.addMovie(mv));
-}
-
-console.log(test());

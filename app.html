@@ -12,7 +12,7 @@
     <script src="movieGenre.js"></script>
 </head>
 
-<body>
+<body onload="loadGenres(); loadMovies();">
     <!-- Question 1 -->
     <div class="row">
         <div class="col">
@@ -45,23 +45,23 @@
             <form id="createMovie" onsubmit="createMovie()">
                 <div class="form-group">
                     UUID
-                    <input type="text" name="" id="uuid" class="form-control">
+                    <input type="text" name="" id="movieUUID" class="form-control">
                 </div>
                 <div class="form-group">
                     Title
-                    <input type="text" name="" id="title" class="form-control">
+                    <input type="text" name="" id="movieTitle" class="form-control">
                 </div>
                 <div class="form-group">
                     Year
-                    <input type="text" name="" id="year" class="form-control">
+                    <input type="text" name="" id="movieYear" class="form-control">
                 </div>
                 <div class="form-group">
                     Genres
-                    <input type="text" name="" id="genres" class="form-control">
+                    <select name="movieGenres" id="movieGenres"></select>
                 </div>
                 <div class="form-group">
                     Related
-                    <input type="text" name="" id="related" class="form-control">
+                    <input type="text" name="" id="movieRelated" class="form-control">
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Submit" id="movieSubmitButton" class="btn btn-primary">

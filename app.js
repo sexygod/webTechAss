@@ -1,46 +1,8 @@
-/* function Movie() {
-    this.uuid = "";
-    this.title = "";
-    this.year = "";
-    this.genres = "";
-    this.related = [];
-    this.addRelatedMovie = function (m) {
-        if (m instanceof Movie) {
-            this.related.push(m);
-            return true;
-        }
-        return false;
-    }
-    this.setGenre = function (g) {
-        if (g instanceof Genre) {
-            this.genre = g;
-            return this.addRelatedMovie(this);
-        }
-        return false;
-    }
-}
-
-function Genre() {
-    this.name = "";
-    this.movies = [];
-    this.addMovie = function (m) {
-        if (m instanceof Movie) {
-            this.movies.push(m);
-            return true;
-        }
-        return false;
-    }
-} */
-
 var genres = [];
 var movies = [];
-function createGenre() {
-    var genreName = document.forms["createGenre"]["genreName"].value;
-    var genreMovies = document.forms["createGenre"]["genreMovies"].value;
 
-    var newGenre = new Genre();
-    newGenre.name = genreName;
-
+//Question 1
+function createGenre(){
     genreMovies = genreMovies.split(", ");
     for (var key in genreMovies) {
         var newMovie = new Movie();
@@ -48,10 +10,21 @@ function createGenre() {
         newGenre.addMovie(newMovie);
     }
     genres.push(newGenre);
-    console.log(genres);
-    count++;
-    console.log(count);
-    return genres;
+}
+
+//Question 2
+function createMovie(){
+    var movieUUID = document.forms["createMovie"]["movieUUID"].value;
+    var movieTitle = document.forms["createMovie"]["movieTitle"].value;
+    var movieYear = document.forms["createMovie"]["movieYear"].value;
+    var movieGenres = document.forms["createMovie"]["movieGenres"].value;
+    var relatedMovies = document.forms["createMovie"]["movieRelated"].value;
+
+    var newMovie = new Movie();    
+    relatedMovies = relatedMovies.split(",");
+
+    newMovie.setAttributes(movieUUID, movieTitle, movieYear, movieGenres, relatedMovies)
+    movies.push(newMovie);
 }
 
 //Question 3
@@ -100,6 +73,14 @@ function loadGenres(){
                 genres.push(newGenre);
             }
 
+            var list = document.getElementById("movieGenres");
+            for(var key in genres){
+                var option = document.createElement("option");
+                option.value = key;
+                option.innerHTML = key.name;
+                list.appendChild(option);
+            }
+
             console.log(genres); //delete me
             displayGenres();
         }
@@ -113,17 +94,12 @@ function loadMovies(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200){
-            
-            /* var moviesStrArr = this.responseText.split(",");
-            for(var key in moviesStrArr){
-                var newMovie = new Movie();
-                newMovie.name = moviesStrArr[key];
-                movies.push(newMovie);
-            } */
 
-            console.log(this.responseText);
-            //console.log(movies); //delete me
-            //displayMovies();
+            var moviesJSON = JSON.parse(this.responseText);
+            for (var movie in moviesJSON){
+                var newMovie = new Movie;
+                
+            }
         }
     };
     xhttp.open("GET", "moviesDB.json", true);
