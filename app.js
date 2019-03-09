@@ -101,16 +101,17 @@ function loadMovies(){
         if (this.readyState == 4 && this.status == 200){
 
             var moviesJSON = JSON.parse(this.responseText);
-            for (var key in moviesJSON.movies){
+            
+            for (var key in moviesJSON){
                 var newMovie = new Movie();
                 var newGenre = new Genre();
-                newGenre.name = moviesJSON.movies[key].genres;
+                newGenre.name = moviesJSON[key].genres;
 
-                newMovie.uuid = moviesJSON.movies[key].uuid;
-                newMovie.title = moviesJSON.movies[key].title;
-                newMovie.year = moviesJSON.movies[key].year;
+                newMovie.uuid = moviesJSON[key].uuid;
+                newMovie.title = moviesJSON[key].title;
+                newMovie.year = moviesJSON[key].year;
                 newMovie.genres = newGenre;
-                newMovie.related = moviesJSON.movies[key].related;
+                newMovie.related = moviesJSON[key].related;
 
                 movies.push(newMovie);
             }
@@ -123,7 +124,12 @@ function loadMovies(){
 }
 
 function test(){
-    var fs = require('fs');
+    var xhttp = new XMLHttpRequest();
+    var jason2;
+
+    xhttp.open("POST", "moviesDB.json", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
     var jason = {
         "uuid" : "xxx",
         "title": "Bloodborne 2",
@@ -132,5 +138,6 @@ function test(){
         "related" : ["Dark Souls"]
     };
     jason2 = JSON.stringify(jason);
-    fs.writeFile('moviesDB.json', jason2, 'utf8', callback);
+
+    xhttp.send(jason2);
 }
