@@ -29,7 +29,6 @@ function createMovie(){
 
 //Question 3
 function displayGenres() {
-    //every time the page refreshes, the js gets reloaded as well so variables are not saved
     var ol = document.createElement("ol")
     var li;
     
@@ -39,7 +38,6 @@ function displayGenres() {
         ol.appendChild(li);
     }
 
-    /* document.getElementById("displayGenresBtn").style.display = "none"; */
     document.getElementById("genreList").appendChild(ol);
 }
 
@@ -79,7 +77,7 @@ function loadGenres(){
                 genres.push(newGenre);
             }
 
-            /* Drop menu */
+            // Drop menu
             var list = document.getElementById("movieGenres");
             for(var key in genres){
                 var option = document.createElement("option");
@@ -121,23 +119,4 @@ function loadMovies(){
     };
     xhttp.open("GET", "moviesDB.json", true);
     xhttp.send();
-}
-
-function test(){
-    var xhttp = new XMLHttpRequest();
-    var jason2;
-
-    xhttp.open("POST", "moviesDB.json", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-
-    var jason = {
-        "uuid" : "xxx",
-        "title": "Bloodborne 2",
-        "year" : "20 never",
-        "genres" : "Dark Fantasy",
-        "related" : ["Dark Souls"]
-    };
-    jason2 = JSON.stringify(jason);
-
-    xhttp.send(jason2);
 }

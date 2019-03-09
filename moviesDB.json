@@ -1,16 +1,16 @@
 [
     {
-        "uuid" : "0123",
+        "uuid" : "123",
         "title": "Interstellar",
         "year" : "2014",
         "genres" : "Sci-Fi",
-        "related" : ["2001 A Space Odyssey", "The Martian"]
+        "related" : ["2001 A Space Odyssey"]
     },
     {
-        "uuid" : "0124",
-        "title": "Bloodborne",
-        "year" : "2014",
-        "genres" : "Dark Fantasy",
-        "related" : ["Dark Souls"]
+        "uuid" : "124",
+        "title": "Black Panther",
+        "year" : "2018",
+        "genres" : "Action",
+        "related" : ["Avengers"]
     }
 ]
