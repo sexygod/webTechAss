@@ -13,6 +13,10 @@
 </head>
 
 <body onload="loadGenres(); loadMovies();">
+
+    <div>
+        <button onclick="test()">Test Button</button>
+    </div>
     <!-- Question 1 -->
     <div class="row">
         <div class="col">
@@ -70,15 +74,18 @@
         </div>
 
         <!-- Question 4 -->
-        <div class="col" id="movieList">
-            <!-- <button onclick="displayMovies()" id="displayMoviesBtn">Display Movies</button> -->
+        <div class="col">
+            <table id="movieList" class="table">
+                <tr>
+                    <th>UUID</th>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Genre</th>
+                    <th>Related</th>
+                </tr>
+            </table>
         </div>
     </div>
-
-    <div>
-        <button onclick="loadMovies()">Hello hi world</button>
-    </div>
-
 
 </body>
 

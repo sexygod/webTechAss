@@ -45,19 +45,25 @@ function displayGenres() {
 
 //Question 4
 function displayMovies(){
-    var table = document.createElement("table")
+    var table = document.getElementById("movieList");
     
     for (var key in movies) {
-        for (var i = 0; i < 3; i++){
-            table.appendChild(document.createElement("tr"));
+        var tr = (document.createElement("tr"));
+        for(var i = 0; i < 5; i++){
             var td = document.createElement("td");
-            td.appendChild(document.createTextNode(movies[key].name));
-            table.appendChild(td);
-        }
-    }
 
-    document.getElementById("displayMoviesBtn").style.display = "none";
-    document.getElementById("moviesList").appendChild(ul);
+            switch(i){
+                case 0: td.appendChild(document.createTextNode(movies[key].uuid)); break;
+                case 1: td.appendChild(document.createTextNode(movies[key].title)); break;
+                case 2: td.appendChild(document.createTextNode(movies[key].year)); break;
+                case 3: td.appendChild(document.createTextNode(movies[key].genres.name)); break;
+                case 4: td.appendChild(document.createTextNode(movies[key].related)); break;
+                default: break;
+            }
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
 }
 
 //Question 5
@@ -73,15 +79,14 @@ function loadGenres(){
                 genres.push(newGenre);
             }
 
+            /* Drop menu */
             var list = document.getElementById("movieGenres");
             for(var key in genres){
                 var option = document.createElement("option");
-                option.value = key;
-                option.innerHTML = key.name;
+                option.value = genres[key];
+                option.innerHTML = genres[key].name;
                 list.appendChild(option);
             }
-
-            console.log(genres); //delete me
             displayGenres();
         }
     };
@@ -96,17 +101,36 @@ function loadMovies(){
         if (this.readyState == 4 && this.status == 200){
 
             var moviesJSON = JSON.parse(this.responseText);
-            for (var movie in moviesJSON){
-                var newMovie = new Movie;
-                
+            for (var key in moviesJSON.movies){
+                var newMovie = new Movie();
+                var newGenre = new Genre();
+                newGenre.name = moviesJSON.movies[key].genres;
+
+                newMovie.uuid = moviesJSON.movies[key].uuid;
+                newMovie.title = moviesJSON.movies[key].title;
+                newMovie.year = moviesJSON.movies[key].year;
+                newMovie.genres = newGenre;
+                newMovie.related = moviesJSON.movies[key].related;
+
+                movies.push(newMovie);
             }
+
+            displayMovies();
         }
     };
     xhttp.open("GET", "moviesDB.json", true);
     xhttp.send();
 }
 
-function test2(){
-    var m = new Movie();
-    console.log("Working")
+function test(){
+    var fs = require('fs');
+    var jason = {
+        "uuid" : "xxx",
+        "title": "Bloodborne 2",
+        "year" : "20 never",
+        "genres" : "Dark Fantasy",
+        "related" : ["Dark Souls"]
+    };
+    jason2 = JSON.stringify(jason);
+    fs.writeFile('moviesDB.json', jason2, 'utf8', callback);
 }
