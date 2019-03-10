@@ -88,7 +88,7 @@ function loadGenres(){
             displayGenres();
         }
     };
-    xhttp.open("GET", "genreDB.txt", true);
+    xhttp.open("GET", "data/genreDB.txt", true);
     xhttp.send();
 }
 
@@ -117,6 +117,6 @@ function loadMovies(){
             displayMovies();
         }
     };
-    xhttp.open("GET", "moviesDB.json", true);
+    xhttp.open("GET", "data/moviesDB.json", true);
     xhttp.send();
 }
